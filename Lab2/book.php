@@ -29,8 +29,12 @@ class Book {
         if (empty($author)) {
             throw new Exception("Author cannot be empty");
         }
+        if (!preg_match('/^[a-zA-Z\s]+$/', $author)) {
+            throw new Exception("Author must contain only letters and spaces");
+        }
         $this->author = $author;
     }
+    
 
     public function getYear() {
         return $this->year;

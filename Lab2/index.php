@@ -1,27 +1,63 @@
 <?php
+
 include 'Book.php';
+session_start(); // Start the session
 
-$books = [];
 $errorMsg = "";
+$title = $author = $year = "";
 
+// Initialize books array from session or create an empty array
+if (!isset($_SESSION['books'])) {
+    $_SESSION['books'] = [];
+}
+
+// Check if the form is submitted
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    try {
+    
+        // Retrieve form data
         $title = $_POST['title'];
         $author = $_POST['author'];
         $year = $_POST['year'];
 
-        $book = new Book($title, $author, $year);
-        $books[] = $book;
+        try {
+        // Validate the input data
+        if (empty($title) || empty($author) || empty($year)) {
+            throw new Exception("All fields are required.");
+        }
+
+        if (!preg_match('/^[a-zA-Z\s]+$/', $author)) {
+            throw new Exception("Author name must contain only letters and spaces.");
+        }
+
+        if (!is_numeric($year) || $year < 0) {
+            throw new Exception("Invalid publication year.");
+        }
+
+        // Store book data as an associative array
+        $book = [
+            'title' => $title,
+            'author' => $author,
+            'year' => $year
+        ];
+
+        // Append the new book to the books array in the session
+        $_SESSION['books'][] = $book;
+
+        $title = $author = $year = "";
+
     } catch (Exception $e) {
         $errorMsg = $e->getMessage();
     }
 }
+
+// Retrieve the updated books array from the session
+$books = $_SESSION['books'];
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book Management System</title>
     <style>
@@ -86,11 +122,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <h1>Add a New Book</h1>
     <form method="POST" action="">
         <label>Title:</label>
-        <input type="text" name="title" placeholder="Enter book title"><br>
+        <input type="text" name="title" placeholder="Enter book title" value="<?php echo htmlspecialchars($title); ?>" required><br>
         <label>Author:</label> 
-        <input type="text" name="author" placeholder="Enter author name"><br>
+        <input type="text" name="author" placeholder="Enter author name" value="<?php echo htmlspecialchars($author); ?>" required><br>
         <label>Publication Year:</label> 
-        <input type="text" name="year" placeholder="Enter publication year"><br>
+        <input type="text" name="year" placeholder="Enter publication year" value="<?php echo htmlspecialchars($year); ?>" required><br>
         <input type="submit" value="Add Book">
     </form>
 
@@ -101,10 +137,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if (count($books) > 0) {
         echo "<h2>Book List</h2>";
-        echo "<table border='1'>
+        echo "<table>
                 <tr><th>Title</th><th>Author</th><th>Year</th></tr>";
         foreach ($books as $book) {
-            echo "<tr><td>{$book->getTitle()}</td><td>{$book->getAuthor()}</td><td>{$book->getYear()}</td></tr>";
+            echo "<tr><td>{$book['title']}</td><td>{$book['author']}</td><td>{$book['year']}</td></tr>";
         }
         echo "</table>";
     } else {

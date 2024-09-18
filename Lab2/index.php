@@ -1,5 +1,4 @@
 <?php
-
 include 'Book.php';
 session_start(); // Start the session
 

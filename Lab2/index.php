@@ -1,56 +1,50 @@
 <?php
 include 'Book.php';
-session_start(); // Start the session
 
-$errorMsg = "";
-$title = $author = $year = "";
-
-// Initialize books array from session or create an empty array
-if (!isset($_SESSION['books'])) {
-    $_SESSION['books'] = [];
-}
+$response = ['success' => false, 'errors' => [], 'book' => []];
+$title = $author = $year = '';
 
 // Check if the form is submitted
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    
-        // Retrieve form data
+
         $title = $_POST['title'];
         $author = $_POST['author'];
         $year = $_POST['year'];
 
         try {
-        // Validate the input data
-        if (empty($title) || empty($author) || empty($year)) {
-            throw new Exception("All fields are required.");
+            if (empty($title)) {
+                $response['errors']['title'] = "Title is required.";
+            }
+
+        if (empty($author)) {
+            $response['errors']['author'] = "Author is required.";
+        }elseif (!preg_match('/^[a-zA-Z\s]+$/', $author)) {
+            $response['errors']['author'] = "Author name must contain only letters and spaces.";
         }
 
-        if (!preg_match('/^[a-zA-Z\s]+$/', $author)) {
-            throw new Exception("Author name must contain only letters and spaces.");
+        if (empty($year)) {
+            $response['errors']['year'] = "Publication year is required.";
+        }elseif (!is_numeric($year) || $year < 0) {
+            $response['errors']['year'] = "Invalid publication year.";
         }
 
-        if (!is_numeric($year) || $year < 0) {
-            throw new Exception("Invalid publication year.");
-        }
-
-        // Store book data as an associative array
-        $book = [
-            'title' => $title,
-            'author' => $author,
-            'year' => $year
-        ];
-
-        // Append the new book to the books array in the session
-        $_SESSION['books'][] = $book;
-
-        $title = $author = $year = "";
-
+        if (empty($response['errors'])) {
+                $book = new Book($title, $author, $year);
+                
+                $response['success'] = true;
+                $response['book'] = [
+                    'title' => $book->getTitle(),
+                    'author' => $book->getAuthor(),
+                    'year' => $book->getYear(),
+                ];
+            }
     } catch (Exception $e) {
-        $errorMsg = $e->getMessage();
+        $response['errors']['general'] = $e->getMessage();
     }
+header('Content-Type: application/json');
+    echo json_encode($response);
+    exit;
 }
-
-// Retrieve the updated books array from the session
-$books = $_SESSION['books'];
 ?>
 
 <!DOCTYPE html>
@@ -119,32 +113,81 @@ $books = $_SESSION['books'];
 </head>
 <body>
     <h1>Add a New Book</h1>
-    <form method="POST" action="">
+    <form id="bookForm" method="POST" action="">
         <label>Title:</label>
         <input type="text" name="title" placeholder="Enter book title" value="<?php echo htmlspecialchars($title); ?>" required><br>
+        <span id="titleError" class="error"></span>
+        
         <label>Author:</label> 
         <input type="text" name="author" placeholder="Enter author name" value="<?php echo htmlspecialchars($author); ?>" required><br>
+        <span id="authorError" class="error"></span>
+
         <label>Publication Year:</label> 
         <input type="text" name="year" placeholder="Enter publication year" value="<?php echo htmlspecialchars($year); ?>" required><br>
+        <span id="yearError" class="error"></span>
+        
         <input type="submit" value="Add Book">
     </form>
 
-    <?php
-    if ($errorMsg) {
-        echo "<p style='color:red;'>$errorMsg</p>";
-    }
+    <h2 id="bookListHeading" style="display:none;">Book List</h2>
+    <table id="bookTable" style="display:none;">
+        <thead id="bookTableHead" style="display:none;">
+            <tr><th>Title</th><th>Author</th><th>Year</th></tr>
+        </thead>
+        <tbody id="bookTableBody"></tbody>
+    </table>
 
-    if (count($books) > 0) {
-        echo "<h2>Book List</h2>";
-        echo "<table>
-                <tr><th>Title</th><th>Author</th><th>Year</th></tr>";
-        foreach ($books as $book) {
-            echo "<tr><td>{$book['title']}</td><td>{$book['author']}</td><td>{$book['year']}</td></tr>";
-        }
-        echo "</table>";
-    } else {
-        echo "<p style='text-align:center;'>No books added yet.</p>";
-    }
-    ?>
+
+    <script>
+        document.getElementById('bookForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            // Clear previous errors
+            document.getElementById('titleError').textContent = '';
+            document.getElementById('authorError').textContent = '';
+            document.getElementById('yearError').textContent = '';
+
+            // Create form data
+            var formData = new FormData(this);
+
+            // Send AJAX request
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', 'index.php', true);
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    var response = JSON.parse(xhr.responseText);
+
+                    if (response.success) {
+                        // Show the book table and heading if it's the first book
+                        document.getElementById('bookTable').style.display = 'table';
+                        document.getElementById('bookListHeading').style.display = 'block';
+                        document.getElementById('bookTableHead').style.display = 'table-header-group';
+
+                        // Add the new book to the table
+                        var bookTableBody = document.getElementById('bookTableBody');
+                        var newRow = bookTableBody.insertRow();
+                        newRow.innerHTML = '<td>' + response.book.title + '</td><td>' + response.book.author + '</td><td>' + response.book.year + '</td>';
+
+                        // Clear form fields
+                        document.getElementById('title').value = '';
+                        document.getElementById('author').value = '';
+                        document.getElementById('year').value = '';
+                    } else {
+                        // Display validation errors
+                        if (response.errors.title) {
+                            document.getElementById('titleError').textContent = response.errors.title;
+                        }
+                        if (response.errors.author) {
+                            document.getElementById('authorError').textContent = response.errors.author;
+                        }
+                        if (response.errors.year) {
+                            document.getElementById('yearError').textContent = response.errors.year;
+                        }
+                    }
+                }
+            };
+            xhr.send(formData);
+        });
+    </script>
 </body>
 </html>

@@ -10,6 +10,12 @@ This is a basic PHP-based Book Management System developed using Object-Oriented
 - Displays a list of books in a table format.
 - Error messages shown for invalid inputs.
 
+## Contents
+
+- HTML form for user input
+- PHP script for handling form submission and validation
+- AJAX handling to dynamically update content without reloading the page
+
 ## Files
 
 - **index.php**: The main file that contains the HTML form, handles form submissions, and displays the list of books.

@@ -1,1 +1,17 @@
-[{"username":"Mitali","email":"Sisodia@gmail.com","password":"$2y$10$GY4\/kR6aKsjyxyxxTe9Kiuo3mmNnM3GVlhqBIjvNZkYjf348OD.oK"},{"username":"Mitali","email":"mitali@gmail.com","password":"$2y$10$R9nSZkmv5s1Hx9\/vAj7cl.rFKDrewbUW4\/kJDTr5W6pFKya7SVuNi"},{"username":"mitali","email":"mitali@gmail.com","password":"$2y$10$ZGous342n.iRh.1jcMrCWu8vjjFt.pElyIEu\/jM5p1lGWdnyoutkO"},{"username":"krisha","email":"krisha@gmail.com","password":"$2y$10$V9Dh3HilbQG0BOYsEE1ykeaaEPX0nf.RKkyUKLCk2iHa4xoxYs6ae"},{"username":"krisha","email":"krisha@gmail.com","password":"$2y$10$\/rw6WaqpAJ4Y8we6VhqQquPBFccuQF7JwOjNcdGcfXUwF0iNqjZp2"}]
+[
+    {
+        "username": "mitali",
+        "email": "mitali@humber.ca",
+        "password": "$2y$10$U4vvE2O0WVTcTn8o8PhAKOKBkihCm3q2v5NPqAjapdMeYSZtMgL3G"
+    },
+    {
+        "username": "mitali",
+        "email": "mitali@gmail.com",
+        "password": "$2y$10$oA6E4xl.2b.bnmLvrZgxJeA\/WGBGhXdJ\/MdXC2As3CxJ.e8xJZiD6"
+    },
+    {
+        "username": "mitali1",
+        "email": "mitali@gmail.com",
+        "password": "$2y$10$q.Z0qUwJXlmWxkZ032G5COwqqIki.Qei6H6tAdCY2i0vX\/dJuCmcm"
+    }
+]

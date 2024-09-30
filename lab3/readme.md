@@ -6,13 +6,8 @@ This project implements a user registration and application submission system us
 
 ## Files and Their Functions
 
+
 ### 1. `register.php`
-
-- **Purpose**: Serves as the landing page of the application.
-- **Key Features**:
-  - Provides navigation links to registration and login pages.
-
-### 2. `register.php`
 
 - **Purpose**: Handles user registration.
 - **Key Features**:
@@ -21,14 +16,14 @@ This project implements a user registration and application submission system us
   - Saves user data in `users.json`.
   - Redirects to the login page upon successful registration.
 
-### 3. `login.php`
+### 2. `login.php`
 
 - **Purpose**: Facilitates user login.
 - **Key Features**:
   - Validates user credentials against stored data in `users.json`.
   - Starts a session upon successful login.
 
-### 4. `personal_data.php`
+### 3. `personal_data.php`
 
 - **Purpose**: Collects personal information from the user.
 - **Key Features**:
@@ -36,7 +31,7 @@ This project implements a user registration and application submission system us
   - Stores user data in session variables for later use.
   - Provides a "Next" button to proceed to the next step.
 
-### 5. `background_data.php`
+### 4. `background_data.php`
 
 - **Purpose**: Gathers educational background information.
 - **Key Features**:
@@ -44,7 +39,7 @@ This project implements a user registration and application submission system us
   - Stores educational details in session variables.
   - Provides navigation to previous and next steps.
 
-### 6. `experience.php`
+### 5. `experience.php`
 
 - **Purpose**: Collects work experience details from the user.
 - **Key Features**:
@@ -52,7 +47,7 @@ This project implements a user registration and application submission system us
   - Stores experience details in session variables.
   - Provides navigation to previous and next steps.
 
-### 7. `review.php`
+### 6. `review.php`
 
 - **Purpose**: Allows users to review their application before submission.
 - **Key Features**:

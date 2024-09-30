@@ -7,7 +7,7 @@ $username = ""; // Initialize username
 
 // Check for session variables
 if (isset($_SESSION['username'])) {
-    $username = $_SESSION['username']; // Retrieve username if set
+    $username = $_SESSION['username'];
 }
 
 if (isset($_SESSION['degree'])) {
@@ -27,11 +27,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Handle "Previous" button click
     if (isset($_POST['previous'])) {
-        header('Location: personal_data.php'); // Adjusted to redirect correctly
+        header('Location: personal_data.php'); 
         exit();
     }
 
-    // Implementing sanitization and validation for each field
     $degreeName = filter_input(INPUT_POST, 'degree', FILTER_SANITIZE_STRING);
     if (empty($degreeName)) {
         $errors['degree'] = "Degree is required.";

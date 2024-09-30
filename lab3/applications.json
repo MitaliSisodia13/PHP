@@ -141,5 +141,31 @@
         "company_name": "charusat",
         "years_experience": "1",
         "job_responsibilities": "studing"
+    },
+    {
+        "full_name": "Mitali Sisodia",
+        "email": "mitali@gmail.com",
+        "phone_number": "1283",
+        "degree": "jfh",
+        "field": "sdhv",
+        "institute": "uhf",
+        "graduation_year": "23",
+        "job_position": "edfef",
+        "company_name": "ef",
+        "years_experience": "2",
+        "job_responsibilities": "f"
+    },
+    {
+        "full_name": "Mitali Sisodia",
+        "email": "mitali@gmail.com",
+        "phone_number": "9057824547",
+        "degree": "Btech",
+        "field": "Information Technology Solutions",
+        "institute": "Humber",
+        "graduation_year": "2025",
+        "job_position": "Student",
+        "company_name": "Nill",
+        "years_experience": "4",
+        "job_responsibilities": "I was studying Computer Engineering"
     }
 ]

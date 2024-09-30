@@ -61,8 +61,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
     $message = "Dear $fullName, \n\n Your application has been submitted.";
 
     echo '<div class="confirmation-message">';
-echo '<h2 style="color: green; font-size: 38px;">Application Submitted!</h2>'; // Corrected quotes here
-echo '<h2 style="color: green;">A confirmation email has been sent to your email.</h2>';
+echo '<h2 style="color: green; font-size: 38px;">Your Application Submitted Successfully!</h2>'; // Corrected quotes here
+echo '<h2 style="color: green;">An email has been sent to you.</h2>';
 echo '</div>';
 
     // Clear session data and destroy the session
@@ -98,19 +98,19 @@ echo '</div>';
 <body>
     <h1>Review Your Application</h1>
     <div class="form-container">
-        <p> Full Name: <?php echo htmlspecialchars($fullName); ?><a href="personal_data.php"> Edit</a></p> 
-        <p> Email: <?php echo htmlspecialchars($email); ?><a href="personal_data.php"> Edit</a></p> 
-        <p> Phone Number: <?php echo htmlspecialchars($phoneNumber); ?><a href="personal_data.php"> Edit</a></p> 
+        <p> Full Name: <?php echo htmlspecialchars($fullName); ?><a href="personal_data.php"><br> Edit</a></p> 
+        <p> Email: <?php echo htmlspecialchars($email); ?><a href="personal_data.php"><br> Edit</a></p> 
+        <p> Phone Number: <?php echo htmlspecialchars($phoneNumber); ?><a href="personal_data.php"><br> Edit</a></p> 
 
-        <p> Highest Degree Obtained: <?php echo htmlspecialchars($degreeName); ?><a href="background.php"> Edit</a></p>  
-        <p> Field of Study: <?php echo htmlspecialchars($fieldStudy); ?><a href="background.php"> Edit</a></p> 
-        <p> Institution Name: <?php echo htmlspecialchars($instituteName); ?><a href="background.php"> Edit</a></p> 
-        <p> Year of Graduation: <?php echo htmlspecialchars($yearOfGraduation); ?><a href="background.php"> Edit</a></p>  
+        <p> Highest Degree Obtained: <?php echo htmlspecialchars($degreeName); ?><a href="background_data.php"><br> Edit</a></p>  
+        <p> Field of Study: <?php echo htmlspecialchars($fieldStudy); ?><a href="background_data.php"><br> Edit</a></p> 
+        <p> Institution Name: <?php echo htmlspecialchars($instituteName); ?><a href="background_data.php"><br> Edit</a></p> 
+        <p> Year of Graduation: <?php echo htmlspecialchars($yearOfGraduation); ?><a href="background_data.php"><br> Edit</a></p>  
 
-        <p> Job Title: <?php echo htmlspecialchars($jobTitle); ?><a href="work_experience.php"> Edit</a></p> 
-        <p> Company Name: <?php echo htmlspecialchars($companyName); ?><a href="work_experience.php"> Edit</a></p>  
-        <p> Year of Experience: <?php echo htmlspecialchars($yearsOfExperience); ?><a href="work_experience.php"> Edit</a></p>  
-        <p> Responsibilities: <?php echo htmlspecialchars($responsibilities); ?><a href="work_experience.php"> Edit</a></p> 
+        <p> Job Title: <?php echo htmlspecialchars($jobTitle); ?><a href="experience.php"> <br>Edit</a></p> 
+        <p> Company Name: <?php echo htmlspecialchars($companyName); ?><a href="experience.php"><br> Edit</a></p>  
+        <p> Year of Experience: <?php echo htmlspecialchars($yearsOfExperience); ?><a href="experience.php"><br> Edit</a></p>  
+        <p> Responsibilities: <?php echo htmlspecialchars($responsibilities); ?><a href="experience.php"><br> Edit</a></p> 
 
         <form action="" method="POST">
             <button type="submit" name="submit"> Submit </button>

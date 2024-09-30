@@ -60,8 +60,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
     $subject = "Application Submitted!";
     $message = "Dear $fullName, \n\n Your application has been submitted.";
 
-    echo "<h2>Application Submitted!</h2>";
-    echo "<h2>A confirmation email has been sent to your email.</h2>";
+    echo '<div class="confirmation-message">';
+echo '<h2 style="color: green; font-size: 38px;">Application Submitted!</h2>'; // Corrected quotes here
+echo '<h2 style="color: green;">A confirmation email has been sent to your email.</h2>';
+echo '</div>';
 
     // Clear session data and destroy the session
     session_unset();
@@ -72,7 +74,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
         setcookie('username_remember', '', time() - 3600, "/");
     }
 
-    echo '<a href="login.php"><button>Logout</button></a>';
+    echo '<a href="login.php" style="background-color: #3498db;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 1em;
+    border: none;
+    margin:3px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;"><button>Logout</button></a>';
     exit();
 }
 ?>

@@ -55,8 +55,8 @@ if (isset($_POST['logout'])) {
     session_unset();
     session_destroy();
 
-    if (isset($_COOKIE['remember_user'])) {
-        setcookie('remember_user', '', time() - 3600, "/");
+    if (isset($_COOKIE['username_remember'])) {
+        setcookie('username_remember', '', time() - 3600, "/");
     }
 
     header('Location: login.php');
@@ -90,7 +90,7 @@ if (isset($_POST['logout'])) {
 
             <button type="submit" name="submit_info">Proceed</button>
             <form action="" method="POST">
-            <a href="login.php"><button class="logout-button" type="submit" name="logout">LOGOUT</button></a>
+            <button class="logout-button" type="submit" name="logout">LOGOUT</button>
     </form>
         </form>
     </div>

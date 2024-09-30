@@ -76,6 +76,21 @@ button:disabled {
     cursor: not-allowed;
 }
 
+.confirmation-message {
+    background-color: #dff0d8;
+    color: #3c763d;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 500px;
+    margin: 50px auto;
+    border: 1px solid #d6e9c6;
+}
+
+.confirmation-message h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
 /* Logout button styling */
 .logout-button {
     background-color: #e74c3c;

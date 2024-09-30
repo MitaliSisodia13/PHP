@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Handle "Previous" button click
     if (isset($_POST['previous'])) {
-        header('Location: experience.php'); // Adjusted to redirect correctly
+        header('Location: personal_data.php'); // Adjusted to redirect correctly
         exit();
     }
 

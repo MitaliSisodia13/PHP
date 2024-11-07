@@ -1,0 +1,4 @@
+[2024-10-29T03:40:47.321530+01:00] appLogger.INFO: This is an info message. [] []
+[2024-10-29T03:40:47.545793+01:00] appLogger.ERROR: This is an error message. [] []
+[2024-10-29T03:41:04.860010+01:00] appLogger.INFO: This is an info message. [] []
+[2024-10-29T03:41:04.866858+01:00] appLogger.ERROR: This is an error message. [] []

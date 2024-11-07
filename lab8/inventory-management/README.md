@@ -84,8 +84,3 @@ Access the app at `http://localhost:8000`.
 ## License
 
 Licensed under the MIT License.
-
-```
-
-This shorter version covers the essentials for setting up and running the project. Let me know if you need any further adjustments!
-```

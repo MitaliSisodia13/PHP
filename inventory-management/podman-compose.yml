@@ -1,0 +1,19 @@
+version: '3.8'
+services:
+  app:
+    build:
+      context: .
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    volumes:
+      - .:/var/www
+    command: php artisan serve --host=0.0.0.0 --port=8000
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_DATABASE: inventory_management
+      MYSQL_ROOT_PASSWORD: rootpassword
+    ports:
+      - "3306:3306"
